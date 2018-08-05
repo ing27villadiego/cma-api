@@ -4,20 +4,18 @@ import path from 'path'
 import bodyParser from 'body-parser'
 import logger from 'morgan'
 
-
-
 const app = express()
+
+//rutas de la api rest
+import {
+  business
+} from './routes'
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.get('/', function(req,res){
-  res.status(200).json({
-    ok: true,
-    message: 'server runnign'
-  })
-})
+app.use('/api/business', business)
 
 // error handler
 app.use(function(err, req, res, next) {
